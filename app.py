@@ -44,6 +44,14 @@ def classify_text_gemini_api(text_to_classify):
     try:
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
+        #implementando esse codigo para debugar os modelos disponíveis
+        models = genai.list_models()
+        for m in models:
+            print(m.name, m.supported_generation_methods)
+
+
+
+
         prompt = f"""
         Você é um classificador JSON.
         Analise o e-mail abaixo e classifique-o como 'produtivo' ou 'improdutivo' com base nas seguintes palavras-chave:
