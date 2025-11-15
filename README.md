@@ -1,36 +1,33 @@
-Projeto: Classificador de Emails com IA - Desafio AutoU
-Dev Junior: Andrez Santos como solução para o Desafio Técnico da AutoU.
-Objetivo: Desenvolver uma aplicação web simples que utilize inteligência artificial para:
+Classificador de Emails com IA - Desafio AutoU
 
-    1. **Classificar** emails em categorias predefinidas.
-    2. **Sugerir respostas automáticas** baseadas na classificação realizada.
-
-    **Categorias de Classificação**
-
-    - **Produtivo:** Emails que requerem uma ação ou resposta específica (ex.: solicitações de suporte técnico, atualização sobre casos em aberto, dúvidas sobre o sistema).
-    - **Improdutivo:** Emails que não necessitam de uma ação imediata (ex.: mensagens de felicitações, agradecimentos).
+Projeto desenvolvido por Andrez Santos como solução para o Desafio Técnico da AutoU.
 
 A aplicação web utiliza Inteligência Artificial para classificar emails (por texto manual ou upload de .txt) em categorias "Produtivo" ou "Improdutivo" e simula o envio de uma resposta automática adequada.
 
-Aplicação no Ar (Deploy na Nuvem)
+🚀 Aplicação no Ar (Deploy na Nuvem)
 
 A aplicação está 100% funcional e hospedada na plataforma gratuita do Render.
 
 Link para testar ao vivo:
 https://desafio-autou-classificador-a2ew.onrender.com/
 
-Tecnologias Utilizadas
+🛠️ Tecnologias Utilizadas
 
 Este projeto foi construído com foco em leveza, escalabilidade e conformidade com os requisitos de deploy gratuito:
 
 Backend: Python 3
+
 Servidor Web: Flask
-Inteligência Artificial: Google Gemini API (*modelo gemini-flash-latest*)
+
+Inteligência Artificial: Google Gemini API (modelo gemini-flash-latest)
+
 Hospedagem: Render.com (conectado ao GitHub para deploy contínuo)
+
 Frontend: HTML5, CSS3 (layout em Grid) e JavaScript (para fetch e atualização do DOM)
+
 Ambiente: python-dotenv (para gerenciamento de chaves de API)
 
-A Jornada da IA: Decisões Técnicas
+🧠 A Jornada da IA: Decisões Técnicas
 
 Um requisito chave do desafio era usar IA de forma eficaz e garantir o deploy em uma plataforma gratuita. Isso exigiu uma análise de arquitetura e resolução de problemas.
 
@@ -51,11 +48,13 @@ A estratégia, as decisões de engenharia e a lógica de negócios (como os labe
 O processo para encontrar a IA correta foi um exercício de engenharia e eliminação:
 
 Plano A: API do Hugging Face (Gratuita)
+
 Status: Descartada.
 
 Motivo: A API pública se mostrou instável durante os testes, retornando um paradoxo de erros 410 (Gone) e 404 (Not Found). Isso é inviável para um produto que precisa de confiabilidade.
 
 Plano B: Modelo Local (Hugging Face Transformers)
+
 Status: Descartado.
 
 Motivo: Esta abordagem apresentou dois problemas fatais:
@@ -67,17 +66,20 @@ Modelos Leves (ex: distilbert): Se mostraram imprecisos, classificando "Spam" co
 Impede o Deploy: Modelos locais (mesmo os leves de 260MB+) são muito pesados para os limites de RAM (512MB) das plataformas de deploy gratuito (Render/Vercel).
 
 Plano C: A Solução Vencedora (Google Gemini API)
+
 Status: Implementado.
 
 Motivo: Esta arquitetura atende a TODOS os requisitos do desafio:
 
 Leveza: O app não baixa nenhum modelo.
+
 Hospedagem Gratuita: Funciona perfeitamente nos limites do Render.
+
 Precisão: A API do Gemini é uma das mais avançadas.
 
 "Treinamento": Em vez de treinar um modelo, usamos "Prompt Engineering" (no app.py). Nós fornecemos à IA as palavras-chave de negócio (nossos produtivo_labels e improdutivo_labels), ensinando-a em tempo real a classificar os emails com base no contexto da AutoU, o que resultou em 100% de acerto nos testes.
 
-**Como Executar Localmente**
+💻 Como Executar Localmente
 
 Para rodar este projeto em sua máquina local:
 
@@ -100,7 +102,7 @@ Instale as Dependências
 pip install -r requirements.txt
 
 
-***Crie sua Chave de API (Crítico)***
+Crie sua Chave de API (Crítico)
 
 Vá ao Google AI Studio.
 
@@ -117,7 +119,7 @@ Adicione sua chave de API nele:
 GOOGLE_API_KEY="COLE_SUA_CHAVE_DE_API_DO_GOOGLE_AQUI"
 
 
-**(O arquivo .gitignore já está configurado para proteger este arquivo e não enviá-lo para o GitHub.)**
+(O arquivo .gitignore já está configurado para proteger este arquivo e não enviá-lo para o GitHub.)
 
 Rode o Servidor Flask
 
@@ -128,7 +130,11 @@ Acesse no Navegador
 Abra http://127.0.0.1:5000
 
 
-Autor
 
 Andrez Santos
-asantosemprendi@gmail.com
+
+WhatsApp 74 9 9912-0486
+
+LinkedIn <!-- (Presumi que era o LinkedIn da AutoU, troque pelo seu se preferir) -->
+
+Instagram <!-- (Presumi que era o Insta da AutoU, troque pelo seu se preferir) -->
