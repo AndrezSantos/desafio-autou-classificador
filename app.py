@@ -39,10 +39,10 @@ def classify_text_gemini_api(text_to_classify):
         raise Exception(f"Erro ao configurar a API do Gemini: {e}")
     # --- FIM DA CORREÇÃO ---
         
-    print("Enviando texto para a API do Google Gemini (gemini-pro)...")
+    print("Enviando texto para a API do Google Gemini (gemini-1.5-flash)...")
     
     try:
-        model = genai.GenerativeModel(model_name="gemini-1.5-flash-latest")
+        model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
         prompt = f"""
         Você é um classificador JSON.
