@@ -13,7 +13,6 @@
 
     <header class="msn-header">
         <div class="logo-area">
-            <!-- CORRIGIDO: O link da imagem vai para o url_for -->
             <img src="{{ url_for('static', filename='img/email-logo.jpg') }}" alt="Logo Email" class="header-logo-icon">
             <span class="logo-title">Classificador de Emails AutoU</span>
         </div>
@@ -22,7 +21,7 @@
     <nav class="sidebar">
         
         <!-- Bloco 1: Logo da AutoU -->
-        <!-- CORRIGIDO: A imagem <img> é envolvida por uma tag <a> -->
+        
         <div class="sidebar-logo-container">
             <a href="https://www.autou.io/" target="_blank">
                 <img src="{{ url_for('static', filename='img/autou.jpg') }}" alt="Logo AutoU" class="sidebar-logo-autou">
@@ -48,7 +47,7 @@
         <!-- Bloco 4: Rodapé (com os novos ícones sociais) -->
         <div class="sidebar-footer">
             <div class="social-links">
-                <!-- CORRIGIDO: O link vai no href da tag <a>, e o url_for() fica limpo -->
+                
                 <a href="https://wa.me/5511987096060" target="_blank">
                     <img src="{{ url_for('static', filename='img/whatsapp_socialnetwork_17360.png') }}" alt="WhatsApp">
                 </a>

@@ -8,10 +8,9 @@ import re # Para extrair o JSON da resposta de texto
 
 # --- Configuração da API do Gemini ---
 load_dotenv()
-# (Nós removemos o 'genai.configure' daqui para corrigir o erro 502)
-# Ele agora está DENTRO da função 'classify_text_gemini_api'
 
-# --- Nossos Labels Inteligentes (para o Prompt) ---
+
+# --- Labels Inteligentes (para o Prompt) ---
 produtivo_labels = "solicitação, suporte, técnico, dúvida, sistema, atualização, erro, treinamento, implantação, software, problema, hardware, impressora, módulo"
 improdutivo_labels = "precisando, hobby, relacionamento, conhecer, conheça, loja, interesse, produto, compra, promoção, cupom, chat, propaganda, spam, newsletter, agradecimento, felicitação, marketing"
 
@@ -25,7 +24,7 @@ def classify_text_gemini_api(text_to_classify):
     """
     
     # --- CORREÇÃO 502 ---
-    # Nós movemos a configuração da API para DENTRO da função.
+    # a configuração da API para DENTRO da função.
     # O app só vai tentar configurar a API quando esta função for chamada.
     GEMINI_API_KEY = os.environ.get("GOOGLE_API_KEY")
     if not GEMINI_API_KEY:
@@ -217,6 +216,7 @@ if __name__ == '__main__':
     import re
     app.run(debug=True, port=5000)
 
+#Rota que ajudou a saber o mdelo ideal para a chave goggle gemini
 #@app.route('/modelos')
 #def listar_modelos():
 #    """ Rota para listar os modelos disponíveis e seus métodos """

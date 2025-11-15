@@ -84,13 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(dados => {
-            // --- Sucesso! Recebemos os dados do app.py ---
+            // --- Sucesso! Recebe os dados do app.py ---
             
             // Atualiza o dashboard
             atualizarDashboard(dados.categoria);
 
             // Mostra o resultado na tela
-            // Usamos 'textContent' para evitar problemas de segurança (HTML Injection)
+            // Usei 'textContent' para evitar problemas de segurança (HTML Injection)
             resultadoContainer.innerHTML = ''; // Limpa o "Aguardando..."
             
             const pCategoria = document.createElement('p');
