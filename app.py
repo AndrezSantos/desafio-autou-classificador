@@ -39,10 +39,10 @@ def classify_text_gemini_api(text_to_classify):
         raise Exception(f"Erro ao configurar a API do Gemini: {e}")
     # --- FIM DA CORREÇÃO ---
         
-    print("Enviando texto para a API do Google Gemini (gemini-1.5-flash)...")
+    print("Enviando texto para a API do Google Gemini (models/gemini-flash-latest)...")
     
     try:
-        model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+        model = genai.GenerativeModel(model_name="models/gemini-flash-latest")
 
         #implementando esse codigo para debugar os modelos disponíveis
         models = genai.list_models()
@@ -217,17 +217,17 @@ if __name__ == '__main__':
     import re
     app.run(debug=True, port=5000)
 
-@app.route('/modelos')
-def listar_modelos():
-    """ Rota para listar os modelos disponíveis e seus métodos """
-    try:
-        modelos = genai.list_models()
-        lista = []
-        for m in modelos:
-            lista.append({
-                'nome': m.name,
-                'metodos_suportados': m.supported_generation_methods
-            })
-        return jsonify(lista)
-    except Exception as e:
-        return jsonify({'erro': str(e)}), 500
+#@app.route('/modelos')
+#def listar_modelos():
+#    """ Rota para listar os modelos disponíveis e seus métodos """
+#    try:
+#        modelos = genai.list_models()
+#        lista = []
+#       for m in modelos:
+#            lista.append({
+#               'nome': m.name,
+#                'metodos_suportados': m.supported_generation_methods
+#           })
+#        return jsonify(lista)
+#    except Exception as e:
+#       return jsonify({'erro': str(e)}), 500
