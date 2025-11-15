@@ -216,3 +216,18 @@ if __name__ == '__main__':
     # Adicionamos 're' à lista de importações
     import re
     app.run(debug=True, port=5000)
+
+@app.route('/modelos')
+def listar_modelos():
+    """ Rota para listar os modelos disponíveis e seus métodos """
+    try:
+        modelos = genai.list_models()
+        lista = []
+        for m in modelos:
+            lista.append({
+                'nome': m.name,
+                'metodos_suportados': m.supported_generation_methods
+            })
+        return jsonify(lista)
+    except Exception as e:
+        return jsonify({'erro': str(e)}), 500
