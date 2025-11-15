@@ -1,0 +1,361 @@
+/* * Este CSS foi reescrito para o layout "MSN Explorer"
+ * (página inteira, com header, sidebar e área de conteúdo).
+ * Usamos CSS Grid para o layout principal.
+ */
+
+/* --- Configuração Global --- */
+html {
+    /* Garante que o html ocupe 100% da altura */
+    height: 100%;
+}
+
+body {
+    /* Define o layout de grid principal */
+    display: grid;
+    /* Define as áreas do layout */
+    grid-template-areas:
+        "header  header"
+        "sidebar content";
+    /* Header tem altura automática, sidebar tem 1fr (ocupa o resto) */
+    grid-template-rows: auto 1fr;
+    /* Sidebar tem largura automática, content tem 1fr (ocupa o resto) */
+    grid-template-columns: auto 1fr;
+
+    /* Gradiente de fundo que vai do azul escuro para o roxo */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    font-family: 'Tahoma', 'Verdana', sans-serif;
+    
+    /* Remove a margem padrão do navegador */
+    margin: 0;
+    /* Garante que o body ocupe 100% da altura da tela */
+    height: 100%;
+    /* Esconde qualquer barra de rolagem no body */
+    overflow: hidden;
+}
+
+/* --- 1. Cabeçalho (Barra Superior) --- */
+.msn-header {
+    grid-area: header; /* Coloca este elemento na área 'header' */
+    
+    /* O gradiente azul brilhante do MSN */
+    background: linear-gradient(to right, #3a7bd5, #00d2ff);
+    color: white;
+    padding: 10px 20px;
+    
+    /* Organiza o logo e os botões */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Sombra para dar profundidade */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Borda inferior sutil */
+    border-bottom: 1px solid #005a9e;
+    z-index: 10; /* Garante que o header fique por cima */
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões falsos do navegador */
+.nav-buttons .nav-btn {
+    background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    border: 1px solid #a0a0a0;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* --- 2. Barra Lateral (Navegação) --- */
+.sidebar {
+    grid-area: sidebar; /* Coloca na área 'sidebar' */
+    
+    /* Fundo de "vidro" semi-transparente */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    
+    padding: 20px;
+    width: 200px; /* Largura fixa */
+    
+    /* Garante que o conteúdo da sidebar role se for muito grande */
+    overflow-y: auto;
+    
+    /* Organiza os botões verticalmente */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f0f0f0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Botões da barra lateral */
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: #ccc;
+    padding: 15px 10px;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Tahoma', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-btn .icon {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Efeito ao passar o mouse */
+.sidebar-btn:not(.active):hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Estilo do botão ATIVO */
+.sidebar-btn.active {
+    background: #3a7bd5; /* Azul do header */
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Rodapé com assinatura */
+.sidebar-footer {
+    margin-top: auto; /* Joga o rodapé para o fim da sidebar */
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #999;
+    font-size: 12px;
+}
+
+/* --- 3. Área de Conteúdo Principal --- */
+.content-area {
+    grid-area: content; /* Coloca na área 'content' */
+    
+    /* Fundo branco para a área de conteúdo */
+    background-color: #f4f7f6;
+    
+    /* Habilita a barra de rolagem APENAS nesta área */
+    overflow-y: auto;
+    
+    /* Define um grid de 2 colunas dentro do conteúdo */
+    display: grid;
+    /* A coluna do form é 2x, a do dashboard é 1x */
+    grid-template-columns: 2fr 1fr;
+    gap: 20px; /* Espaço entre as colunas */
+    padding: 20px;
+}
+
+/* --- Coluna da Esquerda (Formulário) --- */
+.form-input-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre as seções */
+}
+
+/* --- Coluna da Direita (Dashboard) --- */
+.dashboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Estilo dos Painéis de Aba --- */
+.tab-pane {
+    display: none; /* Começam escondidos */
+}
+.tab-pane.active {
+    display: block; /* O ativo é mostrado */
+}
+
+/* --- Estilos Gerais de Formulário (Fieldset, Label, Input) --- */
+fieldset {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin: 0;
+}
+
+legend {
+    font-weight: bold;
+    color: #005a9e; /* Azul escuro */
+    padding: 0 5px;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Layout em grid para agrupar campos (ex: Nome e Email) */
+.form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo geral para inputs de texto, email, senha e textarea */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 95%; /* Ajustado para caber no padding */
+    padding: 10px;
+    font-family: 'Tahoma', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    /* Permite redimensionar apenas verticalmente */
+    resize: vertical;
+    width: 95%; /* (precisa re-declarar) */
+}
+
+/* Nota de campo (para o input de arquivo) */
+.field-note {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Botão de Envio (Submit) */
+button[type="submit"] {
+    background: linear-gradient(to bottom, #3a7bd5, #0078d7);
+    color: white;
+    border: 1px solid #005a9e;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to bottom, #4a88e0, #0082e0);
+}
+
+/* --- Estilos do Dashboard e Resultados (Coluna da Direita) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.metric-card {
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.metric-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.metric-card span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #005a9e;
+}
+
+.metric-card.produtivo span { color: #28a745; }
+.metric-card.improdutivo span { color: #dc3545; }
+
+#resultado-container {
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-height: 100px;
+}
+#resultado-container p { margin: 5px 0; }
+
+/* --- Responsividade (Telas Pequenas) --- */
+@media (max-width: 1024px) {
+    /* Em telas médias, as colunas de conteúdo viram linhas */
+    .content-area {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Em telas pequenas (celular), a sidebar desaparece */
+    .sidebar {
+        display: none; /* Esconde a sidebar */
+    }
+    
+    /* O layout principal vira de linha única */
+    body {
+        grid-template-areas:
+            "header"
+            "content";
+        grid-template-columns: 1fr;
+    }
+    
+    .content-area {
+        padding: 10px; /* Menos padding */
+        gap: 10px;
+    }
+
+    /* O grid de 3 colunas do dashboard vira 1 coluna */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* O grid de 2 colunas do formulário vira 1 coluna */
+    .form-group-grid {
+        grid-template-columns: 1fr;
+    }
+}

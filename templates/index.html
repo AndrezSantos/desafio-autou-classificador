@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Desafio - Classificador de Emails</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="msn-header">
+        <div class="logo-area">
+            <span class="logo-icon">📧</span>
+            <span class="logo-title">Classificador de Emails</span>
+        </div>
+
+
+    </header>
+
+    <nav class="sidebar">
+        <span class="icon"></span>
+        <button class="sidebar-btn active" data-tab="manual-section">
+            <span class="icon">✏️</span>
+            <span>ENTRADA MANUAL</span>
+        </button>
+        <button class="sidebar-btn" data-tab="upload-section">
+            <span class="icon">📁</span>
+            <span>UPLOAD EMAIL</span>
+        </button>
+        
+        <div class="sidebar-footer">
+            <p>Desenvolvido por<br>Andrez Santos</p>
+        </div>
+    </nav>
+
+    <main class="content-area">
+        
+        <form id="form-classificador">
+
+            <div class="form-input-column">
+                
+                <section id="manual-section" class="tab-pane active">
+                    <fieldset>
+                        <legend>Digitar Email Manualmente</legend>
+                        <div class="form-group">
+                            <label for="corpoEmail">Corpo do Email:</label>
+                            <textarea id="corpoEmail" name="corpoEmail" rows="8" placeholder="Digite ou cole o texto do email aqui..."></textarea>
+                        </div>
+                    </fieldset>
+                </section>
+
+                <section id="upload-section" class="tab-pane">
+                    <fieldset>
+                        <legend>Enviar Arquivo .txt</legend>
+                        <div class="form-group">
+                            <label for="arquivoEmail">Selecione um arquivo de email (.txt):</label>
+                            <input type="file" id="arquivoEmail" name="arquivoEmail" accept=".txt">
+                            <p class="field-note">O app lerá o conteúdo deste arquivo de texto.</p>
+                        </div>
+                    </fieldset>
+                </section>
+                
+                <section class="config-section">
+                    <fieldset>
+                        <legend>Configurações da Resposta (Simulada)</legend>
+                        
+                        <div class="form-group-grid">
+                            <div class="form-group">
+                                <label for="nomeFantasia">Nome Fantasia (Seu Nome):</label>
+                                <input type="text" id="nomeFantasia" name="nomeFantasia" value="Equipe AutoU">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailResposta">Seu Email de Envio:</label>
+                                <input type="email" id="emailResposta" name="emailResposta" placeholder="seu-email@gmail.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-grid">
+                            <div class="form-group">
+                                <label for="senhaEmail">Sua Senha (Simulada):</label>
+                                <input type="password" id="senhaEmail" name="senhaEmail" placeholder="****** (para simulação)">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailOriginal">Email do Remetente (Destino):</label>
+                                <input type="email" id="emailOriginal" name="emailOriginal" placeholder="cliente@exemplo.com" required>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="form-group">
+                            <label for="respostaProdutiva">Resposta Rápida (Produtivo):</label>
+                            <textarea id="respostaProdutiva" name="respostaProdutiva" rows="3">Recebemos sua solicitação. Em breve, um especialista entrará em contato.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="respostaImprodutiva">Resposta Rápida (Improdutivo):</label>
+                            <textarea id="respostaImprodutiva" name="respostaImprodutiva" rows="3">Obrigado pela sua mensagem. Esta é uma resposta automática, não é necessário responder.</textarea>
+                        </div>
+                    </fieldset>
+                </section>
+
+                <div class="submit-section">
+                    <button type="submit" id="btn-enviar">
+                        <span id="btn-texto">Analisar e Enviar Resposta</span>
+                        <span id="btn-loading" style="display:none;">Analisando...</span>
+                    </button>
+                </div>
+            </div> </form>
+        <div class="dashboard-column">
+            
+            <section class="results-section">
+                <fieldset>
+                    <legend>Resultados da Análise</legend>
+                    <div id="resultado-container">
+                        <p>Aguardando análise...</p>
+                    </div>
+                </fieldset>
+            </section>
+
+            <section class="dashboard-section">
+                <fieldset>
+                    <legend>Dashboard</legend>
+                    <div class="dashboard-grid">
+                        <div class="metric-card">
+                            <h3>Total Avaliado</h3>
+                            <span id="total-avaliado">0</span>
+                        </div>
+                        <div class="metric-card produtivo">
+                            <h3>Produtivos</h3>
+                            <span id="total-produtivo">0</span>
+                        </div>
+                        <div class="metric-card improdutivo">
+                            <h3>Improdutivos</h3>
+                            <span id="total-improdutivo">0</span>
+                        </div>
+                    </div>
+                </fieldset>
+            </section>
+        </div> </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
