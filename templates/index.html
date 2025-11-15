@@ -13,7 +13,7 @@
 
     <header class="msn-header">
         <div class="logo-area">
-            <!-- Usamos o url_for para a logo do header também (boa prática) -->
+            <!-- CORRIGIDO: O link da imagem vai para o url_for -->
             <img src="{{ url_for('static', filename='img/email-logo.jpg') }}" alt="Logo Email" class="header-logo-icon">
             <span class="logo-title">Classificador de Emails AutoU</span>
         </div>
@@ -22,8 +22,11 @@
     <nav class="sidebar">
         
         <!-- Bloco 1: Logo da AutoU -->
+        <!-- CORRIGIDO: A imagem <img> é envolvida por uma tag <a> -->
         <div class="sidebar-logo-container">
-            <img src="{{ url_for('static', filename='img/autou.jpg', href='https://www.autou.io/')}}" alt="Logo AutoU" class="sidebar-logo-autou">
+            <a href="https://www.autou.io/" target="_blank">
+                <img src="{{ url_for('static', filename='img/autou.jpg') }}" alt="Logo AutoU" class="sidebar-logo-autou">
+            </a>
         </div>
 
         <!-- Bloco 2: Título do App (na sidebar) -->
@@ -45,9 +48,16 @@
         <!-- Bloco 4: Rodapé (com os novos ícones sociais) -->
         <div class="sidebar-footer">
             <div class="social-links">
-                <a href="#" target="_blank"><img src="{{ url_for('static', filename='img/whatsapp_socialnetwork_17360.png'. href='https://wa.me/5511987096060')}}" alt="WhatsApp"></a>
-                <a href="#" target="_blank"><img src="{{ url_for('static', filename='img/linkedin_socialnetwork_17441.png', href='https://www.linkedin.com/company/autou/')}}" alt="LinkedIn"></a>
-                <a href="#" target="_blank"><img src="{{ url_for('static', filename='img/Instagram_icon-icons.com_66804.png', href='https://www.instagram.com/autou.io/'}}" alt="Instagram"></a>
+                <!-- CORRIGIDO: O link vai no href da tag <a>, e o url_for() fica limpo -->
+                <a href="https://wa.me/5511987096060" target="_blank">
+                    <img src="{{ url_for('static', filename='img/whatsapp_socialnetwork_17360.png') }}" alt="WhatsApp">
+                </a>
+                <a href="https://www.linkedin.com/company/autou/" target="_blank">
+                    <img src="{{ url_for('static', filename='img/linkedin_socialnetwork_17441.png') }}" alt="LinkedIn">
+                </a>
+                <a href="https://www.instagram.com/autou.io/" target="_blank">
+                    <img src="{{ url_for('static', filename='img/Instagram_icon-icons.com_66804.png') }}" alt="Instagram">
+                </a>
             </div>
             <p>Desenvolvido por<br>Andrez Santos</p>
         </div>
