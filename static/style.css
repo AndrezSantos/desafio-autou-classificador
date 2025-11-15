@@ -59,27 +59,17 @@ body {
     align-items: center;
 }
 
-.logo-icon {
-    font-size: 24px;
+.header-logo-icon {
+    height: 24px; /* Altura da logo no header */
+    width: auto;
     margin-right: 10px;
+    border-radius: 4px; /* Borda arredondada sutil */
 }
 
 .logo-title {
     font-size: 18px;
     font-weight: bold;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* Botões falsos do navegador */
-.nav-buttons .nav-btn {
-    background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
-    border: 1px solid #a0a0a0;
-    border-radius: 3px;
-    padding: 5px 10px;
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #333;
 }
 
 /* --- 2. Barra Lateral (Navegação) --- */
@@ -102,16 +92,46 @@ body {
     flex-direction: column;
 }
 
-.sidebar-title {
+/* --- NOVOS ESTILOS DA SIDEBAR (COMEÇO) --- */
+
+.sidebar-logo-container {
+    padding: 10px 0;
+    text-align: center; /* Centraliza a logo */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 15px;
+}
+
+.sidebar-logo-autou {
+    max-width: 80%; /* Garante que a logo caiba */
+    height: auto;
+}
+
+.sidebar-app-title {
+    display: flex;
+    flex-direction: column; /* Coloca o ícone em cima do texto */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+}
+
+.sidebar-logo-app {
+    width: 64px; /* Tamanho do ícone do app */
+    height: 64px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-app-title h3 {
+    margin: 0;
     font-size: 16px;
     font-weight: bold;
-    color: #f0f0f0;
-    text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 10px;
 }
+
+/* --- NOVOS ESTILOS DA SIDEBAR (FIM) --- */
+
 
 /* Botões da barra lateral */
 .sidebar-btn {
@@ -156,7 +176,35 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     color: #999;
     font-size: 12px;
+    text-align: center; /* Centraliza o texto e os ícones */
 }
+
+/* --- NOVOS ESTILOS (ÍCONES SOCIAIS) --- */
+.social-links {
+    display: flex;
+    justify-content: center; /* Centraliza os ícones */
+    gap: 15px; /* Espaço entre os ícones */
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    display: inline-block;
+}
+
+.social-links img {
+    width: 24px;  /* Tamanho dos ícones */
+    height: 24px;
+    border-radius: 5px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-links img:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Efeito de "pular" */
+}
+/* --- FIM DOS NOVOS ESTILOS --- */
+
 
 /* --- 3. Área de Conteúdo Principal --- */
 .content-area {
