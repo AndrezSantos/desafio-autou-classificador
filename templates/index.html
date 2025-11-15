@@ -6,21 +6,33 @@
     
     <title>Desafio - Classificador de Emails</title>
     
+    <!-- O Flask vai encontrar o style.css na pasta 'static' -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <header class="msn-header">
         <div class="logo-area">
-            <span class="logo-icon">📧</span>
-            <span class="logo-title">Classificador de Emails</span>
+            <!-- Usamos o url_for para a logo do header também (boa prática) -->
+            <img src="{{ url_for('static', filename='images/email-logo.jpg') }}" alt="Logo Email" class="header-logo-icon">
+            <span class="logo-title">Classificador de Emails AutoU</span>
         </div>
-
-
     </header>
 
     <nav class="sidebar">
-        <span class="icon"></span>
+        
+        <!-- Bloco 1: Logo da AutoU -->
+        <div class="sidebar-logo-container">
+            <img src="{{ url_for('static', filename='images/autou.jpg') }}" alt="Logo AutoU" class="sidebar-logo-autou">
+        </div>
+
+        <!-- Bloco 2: Título do App (na sidebar) -->
+        <div class="sidebar-app-title">
+            <img src="{{ url_for('static', filename='images/email-logo.jpg') }}" alt="Logo App" class="sidebar-logo-app">
+            <h3>Classificador</h3>
+        </div>
+        
+        <!-- Bloco 3: Botões de Navegação -->
         <button class="sidebar-btn active" data-tab="manual-section">
             <span class="icon">✏️</span>
             <span>ENTRADA MANUAL</span>
@@ -30,7 +42,13 @@
             <span>UPLOAD EMAIL</span>
         </button>
         
+        <!-- Bloco 4: Rodapé (com os novos ícones sociais) -->
         <div class="sidebar-footer">
+            <div class="social-links">
+                <a href="#" target="_blank"><img src="{{ url_for('static', filename='images/whatsapp_socialnetwork_17360.png') }}" alt="WhatsApp"></a>
+                <a href="#" target="_blank"><img src="{{ url_for('static', filename='images/linkedin_socialnetwork_17441.png') }}" alt="LinkedIn"></a>
+                <a href="#" target="_blank"><img src="{{ url_for('static', filename='images/Instagram_icon-icons.com_66804.png') }}" alt="Instagram"></a>
+            </div>
             <p>Desenvolvido por<br>Andrez Santos</p>
         </div>
     </nav>
@@ -139,6 +157,8 @@
                 </fieldset>
             </section>
         </div> </main>
+    
+    <!-- O Flask vai encontrar o script.js na pasta 'static' -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
