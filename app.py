@@ -8,18 +8,8 @@ import re # Para extrair o JSON da resposta de texto
 
 # --- Configuração da API do Gemini ---
 load_dotenv()
-GEMINI_API_KEY = os.environ.get("GOOGLE_API_KEY")
-
-if not GEMINI_API_KEY:
-    print("="*50)
-    print("ERRO CRÍTICO: Variável de ambiente 'GOOGLE_API_KEY' não definida.")
-    print("="*50)
-else:
-    try:
-        genai.configure(api_key=GEMINI_API_KEY)
-        print("API do Google Gemini configurada com sucesso.")
-    except Exception as e:
-        print(f"Erro ao configurar a API do Gemini: {e}")
+# (Nós removemos o 'genai.configure' daqui para corrigir o erro 502)
+# Ele agora está DENTRO da função 'classify_text_gemini_api'
 
 # --- Nossos Labels Inteligentes (para o Prompt) ---
 produtivo_labels = "solicitação, suporte, técnico, dúvida, sistema, atualização, erro, treinamento, implantação, software, problema, hardware, impressora, módulo"
@@ -34,18 +24,26 @@ def classify_text_gemini_api(text_to_classify):
     Classifica o texto usando a API do Google Gemini (modelo gemini-pro).
     """
     
+    # --- CORREÇÃO 502 ---
+    # Nós movemos a configuração da API para DENTRO da função.
+    # O app só vai tentar configurar a API quando esta função for chamada.
+    GEMINI_API_KEY = os.environ.get("GOOGLE_API_KEY")
     if not GEMINI_API_KEY:
-        raise Exception("API Key do Google não configurada.")
+        raise Exception("API Key do Google não configurada no ambiente do Render.")
+    
+    try:
+        genai.configure(api_key=GEMINI_API_KEY)
+        print("API do Google Gemini configurada (on-demand).")
+    except Exception as e:
+        print(f"Erro ao configurar a API do Gemini: {e}")
+        raise Exception(f"Erro ao configurar a API do Gemini: {e}")
+    # --- FIM DA CORREÇÃO ---
         
     print("Enviando texto para a API do Google Gemini (gemini-pro)...")
     
     try:
-        # --- MUDANÇA (PLANO G.2) ---
-        # 1. Mudamos para 'gemini-pro' (o modelo universal)
-        # 2. Removemos o 'generation_config' (JSON schema)
-        model = genai.GenerativeModel(model_name="gemini-pro")
+        model = genai.GenerativeModel(model_name="gemini-1.0-pro")
 
-        # 3. Ajustamos o prompt para ser MUITO direto
         prompt = f"""
         Você é um classificador JSON.
         Analise o e-mail abaixo e classifique-o como 'produtivo' ou 'improdutivo' com base nas seguintes palavras-chave:
@@ -65,10 +63,8 @@ def classify_text_gemini_api(text_to_classify):
         
         response = model.generate_content(prompt)
         
-        # 4. Lógica para extrair o JSON da resposta de TEXTO
         print(f"Resposta bruta da API: {response.text}")
         
-        # Usamos regex (re) para encontrar o JSON dentro do texto
         match = re.search(r'\{.*\}', response.text, re.DOTALL)
         if not match:
             raise Exception("A API do Gemini não retornou um JSON válido.")
@@ -76,8 +72,6 @@ def classify_text_gemini_api(text_to_classify):
         json_text = match.group(0)
         result_json = json.loads(json_text)
         
-        # A API do Gemini não retorna 'labels' e 'scores',
-        # então ajustamos o JSON para o formato que nosso frontend espera.
         return {
             'labels': [result_json.get('categoria', 'erro')],
             'scores': [result_json.get('confianca', 0.0)]
