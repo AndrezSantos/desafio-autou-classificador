@@ -42,7 +42,7 @@ def classify_text_gemini_api(text_to_classify):
     print("Enviando texto para a API do Google Gemini (gemini-pro)...")
     
     try:
-        model = genai.GenerativeModel(model_name="gemini-1.0-pro")
+        model = genai.GenerativeModel(model_name="gemini-1.5-pro")
 
         prompt = f"""
         Você é um classificador JSON.
